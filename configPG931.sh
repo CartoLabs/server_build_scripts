@@ -14,10 +14,10 @@ wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo ap
 sudo apt-get update
 
 # install postres
-sudo apt-get install postgresql-9.3
-sudo apt-get install postgresql-9.3-postgis
-sudo apt-get install pgadmin3
-sudo apt-get install postgresql-contrib
+sudo apt-get -q -y install postgresql-9.3 
+sudo apt-get -q -y install postgresql-9.3-postgis
+sudo apt-get -q -y install pgadmin3
+sudo apt-get -q -y install postgresql-contrib
 
 #create new database user
 sudo su - postgres
