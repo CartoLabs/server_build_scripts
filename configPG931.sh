@@ -23,7 +23,7 @@ sudo apt-get -q -y install postgresql-9.3 postgresql-9.3-postgis pgadmin3 postgr
 
 # open postgres port to the world
 echo "Adding a line to the postgres pg_hba.conf file to allow ipv4 0.0.0.0/0 (whole world) access to the database"
-sed -i "92c host<TAB>all<TAB><TAB>all<TAB><TAB>0.0.0.0/0<TAB><TAB>md5" /etc/postgresql/9.3/main/pg_hba.conf
+sed -i "92c host	all		all		0.0.0.0/0		md5" /etc/postgresql/9.3/main/pg_hba.conf
 
 echo "setting the listen address to be all in the postgresql.conf file"
 sed -i "59c listen_addresses = '*' " /etc/postgresql/9.3/main/postgresql.conf
