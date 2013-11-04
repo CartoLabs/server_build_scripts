@@ -21,6 +21,13 @@ sudo apt-get update > /dev/null
 echo "Installing Postgresql 9.3, postgis 2.1, pgadmin support and the contrib libraries so you don't get a funky error message when connecting through pgadmin"
 sudo apt-get -q -y install postgresql-9.3 postgresql-9.3-postgis pgadmin3 postgresql-contrib
 
+# open postgres port to the world
+echo "Adding a line to the postgres pg_hba.conf file to allow ipv4 0.0.0.0/0 (whole world) access to the database"
+sed -i "92c host<TAB>all<TAB><TAB>all<TAB><TAB>0.0.0.0/0<TAB><TAB>md5" /etc/postgresql/9.3/main/pg_hba.conf
+
+echo "setting the listen address to be all in the postgresql.conf file"
+sed -i "59c listen_addresses = '*' " /etc/postgresql/9.3/main/postgresql.conf
+
 #create new database user
 echo "Creating a user named 'postgres' with a password 'password1'"
 sudo su - postgres
@@ -33,15 +40,8 @@ psql postgis_template
 CREATE EXTENSION postgis;
 CREATE EXTENSION postgis_topology;
 \q
-exit
 
-# open postgres port to the world
-echo "Adding a line to the postgres pg_hba.conf file to allow ipv4 0.0.0.0/0 (whole world) access to the database"
-sed -i "92c host<TAB>all<TAB><TAB>all<TAB><TAB>0.0.0.0/0<TAB><TAB>md5" /etc/postgresql/9.3/main/pg_hba.conf
-
-echo "setting the listen address to be all in the postgresql.conf file"
-sed -i "59c listen_addresses = '*' " /etc/postgresql/9.3/main/postgresql.conf
-
+sudo su - root
 # reboot postgres
 echo "rebooting the postgres service, try to connect using your IP address on port 5432.  Make sure to make a security exception if your server requires in."
 /etc/init.d/postgresql restart
