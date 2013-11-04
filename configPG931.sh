@@ -32,9 +32,9 @@ createdb postgis_template
 psql postgis_template
 CREATE EXTENSION postgis;
 CREATE EXTENSION postgis_topology;
-/q
-
+\q
 exit
+
 # open postgres port to the world
 echo "Adding a line to the postgres pg_hba.conf file to allow ipv4 0.0.0.0/0 (whole world) access to the database"
 sed -i "92c host<TAB>all<TAB><TAB>all<TAB><TAB>0.0.0.0/0<TAB><TAB>md5" /etc/postgresql/9.3/main/pg_hba.conf
