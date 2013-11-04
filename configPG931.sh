@@ -3,6 +3,7 @@
 # # ssh root@<ip address>
 # $ passwd
 # $ <enter new password 2x>
+# Then clone this repo down, change the configPG931.sh file to be executable (chmod 755 /path/to/configPG931.sh
 
 # add the postgres repo to the bottom of the sources.list file
 echo "Adding the postgres repo for Ubuntu 12.04(.03) precise"
