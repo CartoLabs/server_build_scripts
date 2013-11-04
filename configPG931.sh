@@ -42,7 +42,6 @@ CREATE EXTENSION postgis;
 CREATE EXTENSION postgis_topology;
 \q
 
-sudo su - root
 # reboot postgres
 echo "rebooting the postgres service, try to connect using your IP address on port 5432.  Make sure to make a security exception if your server requires in."
 /etc/init.d/postgresql restart
