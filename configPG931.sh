@@ -15,7 +15,7 @@ wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo ap
 
 #update with these repos quietly with no junk messages
 echo "Updating"
-sudo apt-get update > /dev/null
+sudo apt-get -q update > /dev/null
 
 # install postres
 echo "Installing Postgresql 9.3, postgis 2.1, pgadmin support and the contrib libraries so you don't get a funky error message when connecting through pgadmin"
@@ -31,7 +31,7 @@ sed -i "59c listen_addresses = '*' " /etc/postgresql/9.3/main/postgresql.conf
 #create new database user
 echo "Creating a user named 'postgres' with a password 'password1'"
 su postgres
-psql
+psql -d postgres -U postgres
 ALTER USER postgres WITH PASSWORD 'password1';
 
 #create a template postgis database and go in to it
