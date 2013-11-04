@@ -30,7 +30,8 @@ sed -i "59c listen_addresses = '*' " /etc/postgresql/9.3/main/postgresql.conf
 
 #create new database user
 echo "Creating a user named 'postgres' with a password 'password1'"
-sudo su - postgres
+su postgres
+psql
 ALTER USER postgres WITH PASSWORD 'password1';
 
 #create a template postgis database and go in to it
