@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install git on your ubuntu 12.04.03 $ sudo apt-get install git-core
+# Install git on your ubuntu 12.04.03 $ sudo apt-get install -y git-core
 # # ssh root@<ip address>
 # $ passwd
 # $ <enter new password 2x>
