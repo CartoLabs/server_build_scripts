@@ -24,7 +24,7 @@ sudo apt-get -q update > /dev/null
 
 # install postres
 echo "Installing Postgresql 9.3, postgis 2.1, pgadmin support and the contrib libraries so you don't get a funky error message when connecting through pgadmin"
-sudo apt-get -q -y install postgresql-9.3 postgresql-9.3-postgis pgadmin3 postgresql-contrib
+sudo apt-get -q -y install postgresql-9.3 postgresql-9.3-postgis pgadmin3 postgresql-contrib > /dev/null
 
 # open postgres port to the world
 echo "Adding a line to the postgres pg_hba.conf file to allow ipv4 0.0.0.0/0 (whole world) access to the database"
