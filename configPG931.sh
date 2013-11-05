@@ -35,12 +35,17 @@ sed -i "59c listen_addresses = '*' " /etc/postgresql/9.3/main/postgresql.conf
 
 #create new database user
 echo "Creating a user named 'postgres' with a password 'password1'"
-su postgres
-psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'password1'"
-psql -U postgres -c "CREATE DATABASE postgis_template"
-psql -d postgis_template -U postgres -c "CREATE EXTENSION postgis"
-psql -d postgis_template -U postgres -c "CREATE EXTENSION postgis_topology"
-\q
+###su postgres
+###psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'password1'"
+###psql -U postgres -c "CREATE DATABASE postgis_template"
+###psql -d postgis_template -U postgres -c "CREATE EXTENSION postgis"
+###psql -d postgis_template -U postgres -c "CREATE EXTENSION postgis_topology"
+###\q
+sudo -u postgres psql -U postgres -d postgres -c "ALTER USER postgres WITH PASSWORD 'password1';"
+sudo -u postgres psql -U postgres -d postgres -c "CREATE DATABASE postgis_template;"
+sudo -u postgres psql -U postgres -d postgis_template -c "CREATE EXTENSION postgis;"
+sudo -u postgres psql -U postgres -d postgis_template -c "CREATE EXTENSION postgis_topology;"
+
 #su root
 #$NPASS
 #create a template postgis database and go in to it
