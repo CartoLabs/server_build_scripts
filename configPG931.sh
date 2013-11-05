@@ -1,9 +1,14 @@
 #!/bin/bash
 # Install git on your ubuntu 12.04.03 $ sudo apt-get install -y git-core
 # # ssh root@<ip address>
-# $ passwd
-# $ <enter new password 2x>
 # Then clone this repo down, change the configPG931.sh file to be executable (chmod 755 /path/to/configPG931.sh
+
+#Change admin passcode
+echo "Please enter what you want your root password to be:"
+read NPASS
+passwd
+$NPASS
+$NPASS
 
 # add the postgres repo to the bottom of the sources.list file
 echo "Adding the postgres repo for Ubuntu 12.04(.03) precise"
@@ -33,7 +38,9 @@ echo "Creating a user named 'postgres' with a password 'password1'"
 su postgres
 psql -d postgres -U postgres
 ALTER USER postgres WITH PASSWORD 'password1';
-
+\q
+su root
+$NPASS
 #create a template postgis database and go in to it
 echo "Creating a sample postgis enabled database named 'postgis_template'"
 createdb postgis_template
@@ -41,6 +48,7 @@ psql postgis_template
 CREATE EXTENSION postgis;
 CREATE EXTENSION postgis_topology;
 \q
+
 
 # reboot postgres
 echo "rebooting the postgres service, try to connect using your IP address on port 5432.  Make sure to make a security exception if your server requires in."
