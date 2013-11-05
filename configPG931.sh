@@ -36,8 +36,10 @@ sed -i "59c listen_addresses = '*' " /etc/postgresql/9.3/main/postgresql.conf
 #create new database user
 echo "Creating a user named 'postgres' with a password 'password1'"
 su postgres
-psql -d postgres -U postgres
-ALTER USER postgres WITH PASSWORD 'password1';
+psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'password1'"
+psql -U postgres -c "CREATE DATABASE postgis_template"
+psql -d postgis_template -U postgres -c "CREATE EXTENSION postgis"
+psql -d postgis_template -U postgres -c "CREATE EXTENSION postgis_topology"
 \q
 #su root
 #$NPASS
